@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.Random;
+
 public class RegisterPage extends HomePage {
     public RegisterPage(WebDriver driver) {
 
@@ -26,6 +28,8 @@ public class RegisterPage extends HomePage {
     By  ConfirmBtn = By.xpath("//*[@id=\"customerForm\"]/table/tbody/tr[13]/td[2]/input");
     By Created = By.xpath("//*[@id=\"rightPanel\"]/p");
     public void RegisterUser() throws InterruptedException{
+        Random random = new Random();
+        int N = random.nextInt(10000);
         Thread.sleep(500);
         if( isDisplayed(SignUpTitle)){
             type("Fracisco", Name);
@@ -34,12 +38,11 @@ public class RegisterPage extends HomePage {
             type("Springfield", City);
             type("Massachusetts", State);
             type("48007", ZipCode);
-            type("FraciscoSmith2", UserName);
+            type("FraciscoSmith"+N, UserName);
             type("5492235678799", Phone);
             type("679-43-4277", SSN);
             type("Fracisco1234", Pass);
             type("Fracisco1234", RePass);
-
             click(ConfirmBtn);
             Thread.sleep(500);
         }else {

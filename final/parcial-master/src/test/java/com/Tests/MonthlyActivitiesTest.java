@@ -3,9 +3,13 @@ package com.Tests;
 import com.Pages.AccountDetailsPage;
 import com.Pages.AccountOverviewPage;
 import com.Pages.NewAccountPage;
+import com.Pages.TransferFoundsPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 
@@ -30,40 +34,41 @@ public class MonthlyActivitiesTest extends AccountSummaryTest {
 
 
     private WebDriver driver;
-    AccountDetailsPage accountDetailsPage;
+    TransferFoundsPage Page;
 
-    @Before
+    @BeforeAll
     public void SetUp() throws Exception {
-        accountDetailsPage = new AccountDetailsPage(driver);
-        driver = accountDetailsPage.openBrowser();
-        accountDetailsPage.visit("https://parabank.parasoft.com/parabank/index.htm");
-        Thread.sleep(2000);
-
-        if (accountDetailsPage.isLogged()){
+        Page = new TransferFoundsPage(driver);
+        driver = Page.openBrowser();
+        Page.visit("https://parabank.parasoft.com/parabank/index.htm");
+        Thread.sleep(500);
+    }
+    @Before
+    public void logInCheck() throws InterruptedException {
+        Thread.sleep(500);
+        if (Page.isLogged()){
             System.out.println("user logged");
         } else {
-            accountDetailsPage.login();
+            Page.login();
             System.out.println("login user franciscosmith");
         }
-
-
     }
 
-
-    @After
+    @AfterAll
     public void TearDown() throws InterruptedException {
         driver.quit();
     }
-
+    @Tag("regession")
+    @Tag("smoke")
     @Test
     public void Test() throws InterruptedException{
-        accountDetailsPage.AccountSummaryBtnClick();
+        Page.AccountSummaryBtnClick();
         Thread.sleep(500);
-        assertTrue(accountDetailsPage.RetentionsAplied().contains("*Balance includes deposits that may be subject to holds"));
-        accountDetailsPage.FirstAccountClick();
-        assertTrue(accountDetailsPage.AccountDetailsTitle().contains("Account Details"));
-        accountDetailsPage.AllAcountDetails();
-        accountDetailsPage.GoClick();
+        assertTrue(Page.RetentionsAplied().contains("*Balance includes deposits that may be subject to holds"));
+        Page.FirstAccountClick();
+        assertTrue(Page.AccountDetailsTitle().contains("Account Details"));
+        Page.AllAcountDetails();
+        Page.GoClick();
     }
 
 }

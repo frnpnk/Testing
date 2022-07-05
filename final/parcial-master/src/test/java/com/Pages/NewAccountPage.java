@@ -3,7 +3,7 @@ package com.Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class NewAccountPage extends AccountOverviewPage {
+public class NewAccountPage extends AccountDetailsPage {
     public NewAccountPage(WebDriver driver) {
         super(driver);
     }

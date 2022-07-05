@@ -2,46 +2,53 @@ package com.Tests;
 
 import com.Pages.HomePage;
 import com.Pages.RegisterPage;
+import com.Pages.TransferFoundsPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 public class RegisterTest {
 
-    /*
-    ● Registro
-○ Haga clic en <Registro>
-○ Rellene el formulario de registro con los datos requeridos
-○ Pulse de nuevo en <Registro>.
-○ Compruebe que el texto "Su cuenta se ha creado correctamente. En la pantalla
-se puede ver "You are now logged in".
-     */
     private WebDriver driver;
-
-    RegisterPage registerPage;
-
+    TransferFoundsPage Page;
 
     @Before
     public void SetUp() throws Exception {
-        registerPage = new RegisterPage(driver);
-        driver = registerPage.openBrowser();
-        registerPage.visit("https://parabank.parasoft.com/parabank/index.htm");
+        Page = new TransferFoundsPage(driver);
+        driver = Page.openBrowser();
+        Page.visit("https://parabank.parasoft.com/parabank/index.htm");
         Thread.sleep(2000);
-        registerPage.register();
     }
+    /*
+    @Before
+    public void logInCheck() throws InterruptedException {
+        Thread.sleep(500);
+        if (Page.isLogged()){
+            System.out.println("user logged");
+        } else {
+            Page.login();
+            System.out.println("login user franciscosmith");
+        }
+    }
+*/
 
-
-    @After
+    @AfterAll
     public void TearDown() throws InterruptedException {
-        // driver.quit();
+         driver.quit();
     }
-
+    @Tag("regession")
+    @Tag("smoke")
     @Test
     public void RegisterTest() throws InterruptedException{
-        registerPage.RegisterUser();
-        assertTrue(registerPage.registerMessage().contains("You are now logged in"));
+        Page.register();
+        Page.RegisterUser();
+        Thread.sleep(2000);
+        assertTrue(Page.registerMessage().contains("You are now logged in"));
 
     }
 }

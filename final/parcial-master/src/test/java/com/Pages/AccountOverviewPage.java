@@ -2,7 +2,7 @@ package com.Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-public class AccountOverviewPage extends HomePage {
+public class AccountOverviewPage extends RegisterPage {
 
     public AccountOverviewPage(WebDriver driver) {
         super(driver);

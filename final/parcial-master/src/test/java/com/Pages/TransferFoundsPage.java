@@ -3,7 +3,7 @@ package com.Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class TransferFoundsPage extends AccountOverviewPage{
+public class TransferFoundsPage extends NewAccountPage{
 
 
     public TransferFoundsPage(WebDriver driver) {

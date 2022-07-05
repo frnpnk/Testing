@@ -1,9 +1,12 @@
 package com.Tests;
 
 import com.Pages.NewAccountPage;
+import com.Pages.TransferFoundsPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.WebDriver;
 
@@ -26,36 +29,40 @@ en la pantalla
      */
 
     private WebDriver driver;
-    NewAccountPage accountPage;
+    TransferFoundsPage Page;
 
-    @Before
+    @BeforeAll
     public void SetUp() throws Exception {
-        accountPage = new NewAccountPage(driver);
-        driver = accountPage.openBrowser();
-        accountPage.visit("https://parabank.parasoft.com/parabank/index.htm");
-        Thread.sleep(2000);
-
-        if (accountPage.isLogged()){
+        Page = new TransferFoundsPage(driver);
+        driver = Page.openBrowser();
+        Page.visit("https://parabank.parasoft.com/parabank/index.htm");
+        Thread.sleep(500);
+    }
+    @Before
+    public void logInCheck() throws InterruptedException {
+        Thread.sleep(500);
+        if (Page.isLogged()){
             System.out.println("user logged");
         } else {
-            accountPage.login();
+            Page.login();
+            System.out.println("login user franciscosmith");
         }
-
     }
 
 
-    @After
+    @AfterAll
     public void TearDown() throws InterruptedException {
         driver.quit();
     }
 
-    @Test
     @Tag("regession")
+    @Tag("smoke")
+    @Test
     public void NewAccountTest() throws InterruptedException{
-        accountPage.NewAccountClick();
-        accountPage.NewAccount();
+        Page.NewAccountClick();
+        Page.NewAccount();
         Thread.sleep(500);
-        assertTrue(accountPage.newAccountMessage().contains("Congratulations, your account is now open."));
+        assertTrue(Page.newAccountMessage().contains("Congratulations, your account is now open."));
 
     }
 

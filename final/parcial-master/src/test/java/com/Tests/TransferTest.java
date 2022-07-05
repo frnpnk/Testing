@@ -6,43 +6,33 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TransferTest {
-    /*
-    ● Transferir Fondos
-○ Haga clic en <Transferencia de fondos>
-○ Compruebe que el texto "Transferir fondos" es visible en la pantalla
-○ En el campo <Importe: $> introduzca el importe a transferir
-○ En el campo <De la cuenta #> seleccione una cuenta
-○ En el campo <a la cuenta #> seleccione una cuenta distinta a la anterior
-○ Haga clic en <Transferencia>
-○ Compruebe que el texto "¡Transferencia completa!" es visible en la pantalla
-
-
-     */
-
 
     private WebDriver driver;
-    TransferFoundsPage transferPage;
+    TransferFoundsPage Page;
 
     @Before
     public void SetUp() throws Exception {
-        transferPage = new TransferFoundsPage(driver);
-        driver = transferPage.openBrowser();
-        transferPage.visit("https://parabank.parasoft.com/parabank/index.htm");
-        Thread.sleep(2000);
-
-        if (transferPage.isLogged()){
+        Page = new TransferFoundsPage(driver);
+        driver = Page.openBrowser();
+        Page.visit("https://parabank.parasoft.com/parabank/index.htm");
+        Thread.sleep(500);
+    }
+    @Before
+    public void logInCheck() throws InterruptedException {
+        Thread.sleep(500);
+        if (Page.isLogged()){
             System.out.println("user logged");
         } else {
-            transferPage.login();
+            Page.login();
             System.out.println("login user franciscosmith");
         }
-
-
     }
 
 
@@ -51,14 +41,16 @@ public class TransferTest {
         driver.quit();
     }
 
+    @Tag("regession")
+    @Tag("smoke")
     @Test
     public void Test() throws InterruptedException{
-        transferPage.TransferBtnClick();
+        Page.TransferBtnClick();
         Thread.sleep(500);
-        assertTrue(transferPage.TransferTitle().contains("Transfer Funds"));
-        transferPage.Transfer();
+        assertTrue(Page.TransferTitle().contains("Transfer Funds"));
+        Page.Transfer();
         Thread.sleep(500);
-        assertTrue(transferPage.TransferComplete().contains("Transfer Complete!"));
+        assertTrue(Page.TransferComplete().contains("Transfer Complete!"));
 
     }
 }
