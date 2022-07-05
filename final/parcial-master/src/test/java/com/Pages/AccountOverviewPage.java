@@ -12,6 +12,8 @@ public class AccountOverviewPage extends HomePage {
     By TransferBtn = By.xpath("//*[@id=\"leftPanel\"]/ul/li[3]/a");
     By LogOutBtn = By.xpath("//*[@id=\"leftPanel\"]/ul/li[8]/a");
     By Retentions = By.xpath("//*[@id=\"accountTable\"]/tfoot/tr/td");
+    By FirstAccount = By.xpath("//*[@id=\"accountTable\"]/tbody/tr[1]/td[1]/a");
+
 
 
     public boolean isLogged(){
@@ -53,6 +55,17 @@ public class AccountOverviewPage extends HomePage {
             System.out.println("Not in logged account page");
         }
     }
+
+    public void FirstAccountClick () throws InterruptedException {
+        Thread.sleep(500);
+        if(isLogged()&&isDisplayed(FirstAccount)){
+            click(FirstAccount);
+        }else{
+            System.out.println("Not in logged account page or not account created yet");
+        }
+    }
+
+
 
 
 

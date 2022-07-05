@@ -44,7 +44,10 @@ public class BasePage {
         Select sel = new Select(findElement(locator));
         sel.selectByVisibleText(testText);
     }
-
+    public void SelectorByIndex(int index, By locator){
+        Select sel = new Select(findElement(locator));
+        sel.selectByIndex(index);
+    }
 
     public Boolean isDisplayed(By locator){
         try{

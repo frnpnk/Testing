@@ -1,15 +1,17 @@
 package com.Tests;
 
+import com.Pages.AccountDetailsPage;
 import com.Pages.AccountOverviewPage;
 import com.Pages.NewAccountPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MonthlyActivitiesTest {
+public class MonthlyActivitiesTest extends AccountSummaryTest {
 
 
     /*
@@ -28,21 +30,22 @@ public class MonthlyActivitiesTest {
 
 
     private WebDriver driver;
-    AccountOverviewPage accountOverviewPage;
+    AccountDetailsPage accountDetailsPage;
 
     @Before
     public void SetUp() throws Exception {
-        accountOverviewPage = new NewAccountPage(driver);
-        driver = accountOverviewPage.openBrowser();
-        accountOverviewPage.visit("https://parabank.parasoft.com/parabank/index.htm");
+        accountDetailsPage = new AccountDetailsPage(driver);
+        driver = accountDetailsPage.openBrowser();
+        accountDetailsPage.visit("https://parabank.parasoft.com/parabank/index.htm");
         Thread.sleep(2000);
 
-        if (accountOverviewPage.isLogged()){
+        if (accountDetailsPage.isLogged()){
             System.out.println("user logged");
         } else {
-            accountOverviewPage.login();
+            accountDetailsPage.login();
             System.out.println("login user franciscosmith");
         }
+
 
     }
 
@@ -54,10 +57,13 @@ public class MonthlyActivitiesTest {
 
     @Test
     public void Test() throws InterruptedException{
-        accountOverviewPage.AccountSummaryBtnClick();
+        accountDetailsPage.AccountSummaryBtnClick();
         Thread.sleep(500);
-        assertTrue(accountOverviewPage.RetentionsAplied().contains("*Balance includes deposits that may be subject to holds"));
-
+        assertTrue(accountDetailsPage.RetentionsAplied().contains("*Balance includes deposits that may be subject to holds"));
+        accountDetailsPage.FirstAccountClick();
+        assertTrue(accountDetailsPage.AccountDetailsTitle().contains("Account Details"));
+        accountDetailsPage.AllAcountDetails();
+        accountDetailsPage.GoClick();
     }
 
 }

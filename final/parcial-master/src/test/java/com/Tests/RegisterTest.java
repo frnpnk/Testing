@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 public class RegisterTest {
 
     /*
@@ -19,10 +18,6 @@ public class RegisterTest {
 ○ Compruebe que el texto "Su cuenta se ha creado correctamente. En la pantalla
 se puede ver "You are now logged in".
      */
-
-
-
-
     private WebDriver driver;
 
     RegisterPage registerPage;

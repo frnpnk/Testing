@@ -27,7 +27,7 @@ retenciones" está visible en la pantalla
 
     @Before
     public void SetUp() throws Exception {
-        accountOverviewPage = new NewAccountPage(driver);
+        accountOverviewPage = new AccountOverviewPage(driver);
         driver = accountOverviewPage.openBrowser();
         accountOverviewPage.visit("https://parabank.parasoft.com/parabank/index.htm");
         Thread.sleep(2000);
@@ -49,11 +49,12 @@ retenciones" está visible en la pantalla
 
     @Test
     @Tag("regession")
+    @Tag("smoke")
     public void AccountSummaryTest() throws InterruptedException{
         accountOverviewPage.AccountSummaryBtnClick();
         Thread.sleep(500);
         assertTrue(accountOverviewPage.RetentionsAplied().contains("*Balance includes deposits that may be subject to holds"));
-
     }
+
 
 }
