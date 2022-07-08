@@ -27,6 +27,8 @@ public class RegisterPage extends HomePage {
     By  RePass = By.xpath("//*[@id=\"repeatedPassword\"]");
     By  ConfirmBtn = By.xpath("//*[@id=\"customerForm\"]/table/tbody/tr[13]/td[2]/input");
     By Created = By.xpath("//*[@id=\"rightPanel\"]/p");
+
+    By LastUser = By.xpath("//*[@id=\"rightPanel\"]/h1");
     public void RegisterUser() throws InterruptedException{
         Random random = new Random();
         int N = random.nextInt(10000);
@@ -53,4 +55,6 @@ public class RegisterPage extends HomePage {
     public String registerMessage(){
         return getText(Created);
     }
+
+
 }

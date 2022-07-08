@@ -5,6 +5,7 @@ import io.restassured.http.ContentType;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import static io.restassured.RestAssured.given;
 public class APITest {
 
 
-    @BeforeAll
+    @Before
     // public static void preTest(){
     //     RestAssured.baseURI = "https://restool-sample-app.herokuapp.com/api/character/";
     // }
@@ -25,7 +26,7 @@ public class APITest {
 
 
     @Test
-    @Tag("smoke")
+    @Tag("APITest")
     public void getAllCharacters() {
 
         RequestSpecification httpRequest = RestAssured.given();
@@ -40,7 +41,7 @@ public class APITest {
     }
 
     @Test
-    @Tag("smoke")
+    @Tag("APITest")
     public void putUpdate() {
 
         RequestSpecification httpRequest = RestAssured.given().contentType(ContentType.JSON
@@ -54,6 +55,7 @@ public class APITest {
     }
 
     @Test
+    @Tag("APITest")
     public void sampleLogin(){
         given().contentType(ContentType.JSON).body("{\n" +
                         "    \"email\": \"eve.holt@reqres.in\",\n" +

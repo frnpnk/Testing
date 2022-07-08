@@ -22,8 +22,8 @@ public class HomePage extends BasePage{
     }
 
     public void login(){
-        type("franciscoSmith",Username);
-        type("fran1234",Password);
+        type("franciscoSmith9571",Username);
+        type("Fracisco1234",Password);
         click(LoginBtn);
     }
 

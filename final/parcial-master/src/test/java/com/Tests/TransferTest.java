@@ -1,12 +1,11 @@
 package com.Tests;
 
-import com.Pages.AccountDetailsPage;
 import com.Pages.TransferFoundsPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Tag;
 import org.openqa.selenium.WebDriver;
 
@@ -36,12 +35,13 @@ public class TransferTest {
     }
 
 
-    @AfterAll
+    @After
     public void TearDown() throws InterruptedException {
         driver.quit();
     }
 
-    @Tag("regession")
+    @Order(5)
+    @Tag("Regression")
     @Tag("smoke")
     @Test
     public void Test() throws InterruptedException{

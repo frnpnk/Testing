@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Unnamed" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+  <configuration default="false" name="smoke" type="JUnit" factoryName="JUnit">
     <module name="parcial-master" />
     <option name="METHOD_NAME" value="" />
     <option name="TEST_OBJECT" value="tags" />
