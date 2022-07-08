@@ -1,21 +1,11 @@
 package com.Tests;
 
-import com.Pages.AccountDetailsPage;
-import com.Pages.AccountOverviewPage;
-import com.Pages.NewAccountPage;
 import com.Pages.TransferFoundsPage;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class MonthlyActivitiesTest extends AccountSummaryTest {
 
 
@@ -25,14 +15,14 @@ public class MonthlyActivitiesTest extends AccountSummaryTest {
     private WebDriver driver;
     TransferFoundsPage Page;
 
-    @Before
+    @BeforeAll
     public void SetUp() throws Exception {
         Page = new TransferFoundsPage(driver);
         driver = Page.openBrowser();
         Page.visit("https://parabank.parasoft.com/parabank/index.htm");
         Thread.sleep(500);
     }
-    @Before
+    @BeforeEach
     public void logInCheck() throws InterruptedException {
         Thread.sleep(500);
         if (Page.isLogged()){
@@ -44,7 +34,7 @@ public class MonthlyActivitiesTest extends AccountSummaryTest {
     }
 
 
-    @After
+    @AfterAll
     public void TearDown() throws InterruptedException {
         driver.quit();
     }
